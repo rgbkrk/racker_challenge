@@ -1,6 +1,12 @@
-==========================
-API Challenges for Rackers
-==========================
+========================
+Rackspace API Challenges
+========================
+
+These challenges were originally written by Rackspace support for Rackspace
+support to work with the API.
+
+Pick one of the [SDKs](http://developer.rackspace.com/#home-sdks) to work with
+and knock these out of the park.
 
 # Week 1 Challenges
 
