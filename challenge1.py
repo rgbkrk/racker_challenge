@@ -44,6 +44,7 @@ for server_id in range(3):
 for server in my_servers:
     # Done if ACTIVE or ERRORed
     print("")
+    print("*"*28)
     print("Waiting on activity for {}".format(server.name))
     server = pyrax.utils.wait_until(server, "status", ["ACTIVE", "ERROR"],
             attempts=0)
@@ -54,7 +55,6 @@ for server in my_servers:
         continue
 
     print("ACTIVE!")
-    print("*"*20)
     print("")
 
 
@@ -68,6 +68,7 @@ for server in my_servers:
     print("Private IP: {}".format(private_ip))
     print("Public IPv4: {}".format(public_ipv4))
     print("Public IPv6: {}".format(public_ipv6))
+    print("*"*28)
 
 
 print("")
