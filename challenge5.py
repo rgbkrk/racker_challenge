@@ -51,5 +51,5 @@ user = inst.create_user(name=username, password=password, database_names=[db])
 print("User: {}".format(username))
 print("Password: {}".format(password))
 
-print("Rackspace Hostname: {}".format(inst.hostname))
+print("Internal Hostname: {}".format(inst.hostname))
 
