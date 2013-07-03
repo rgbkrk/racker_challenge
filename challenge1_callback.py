@@ -43,7 +43,6 @@ def summarize(server):
 
     '''
 
-
     print("")
     print("*"*28)
     print(u"Server: {}".format(server.name))
@@ -61,10 +60,12 @@ def summarize(server):
     print(u"Admin Password: {}".format(server.adminPass))
 
     private_ip = server.networks['private'][0]
-    public_ips = server.networks['public']
+    public_ipv4 = server.accessIPv4
+    public_ipv6 = server.accessIPv6
 
     print("Private IP: {}".format(private_ip))
-    print("Public IPs: {}, {}".format(public_ips[0],public_ips[1]))
+    print("Public IPv4: {}".format(server.accessIPv4))
+    print("Public IPv6: {}".format(server.accessIPv6))
     print("")
     print("Tearing down {}".format(server.name))
     server.delete()
