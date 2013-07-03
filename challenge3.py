@@ -35,3 +35,6 @@ if __name__ == "__main__":
     uuid, total_bytes = cf.upload_folder(folder_path=args.directory,
             container=args.container)
 
+    # TODO: Check for invalid paths, etc.
+
+
