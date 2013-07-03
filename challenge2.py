@@ -2,9 +2,9 @@
 
 # -*- coding: utf-8 -*-
 
-
 '''
-Clones a server (takes an image and deploys the image as a new server).
+Clones a server (takes an image and deploys the image as a new server) on
+Rackspace's cloud.
 '''
 
 import pyrax

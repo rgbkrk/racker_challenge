@@ -3,8 +3,8 @@
 # -*- coding: utf-8 -*-
 
 '''
-Builds three 512 MB servers that follow a similar naming convention
-and returns the IP and login credentials for each server.
+Builds three 512 MB Cloud Servers on Rackspace's cloud that follow a similar
+naming convention and returns the IP and login credentials for each server.
 '''
 
 import pyrax

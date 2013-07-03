@@ -2,7 +2,6 @@
 
 # -*- coding: utf-8 -*-
 
-
 '''
 Accepts a directory and container name as arguments. This script uploads the
 contents of the specified directory to the container (or creates it if it doesn't exist).
