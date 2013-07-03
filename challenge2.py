@@ -19,7 +19,7 @@ cs = pyrax.cloudservers
 
 def create_base():
     '''
-    Creates a dummy base
+    Creates a dummy base server
     '''
     # Creating a dummy server that we'll clone from
     base_image = cs.images.list()[0]
@@ -38,6 +38,7 @@ def clone_machine(server):
     image = cs.images.get(im)
 
     # Image will be in a "SAVING" state until ready -- wait for ACTIVE
+    # TODO: Check for ERROR state
     image = pyrax.wait_until(image, "status", "ACTIVE", attempts=0)
 
     # Time to clone
