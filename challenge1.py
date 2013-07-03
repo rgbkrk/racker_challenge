@@ -57,17 +57,16 @@ for server in my_servers:
     print("ACTIVE!")
     print("")
 
-
-    print(u"Server: {}".format(server.name))
     print(u"Admin Password: {}".format(server.adminPass))
 
     private_ip = server.networks['private'][0]
-    public_ipv4 = server.networks['public'][0]
-    public_ipv6 = server.networks['public'][1]
+    public_ips = server.networks['public']
 
     print("Private IP: {}".format(private_ip))
-    print("Public IPv4: {}".format(public_ipv4))
-    print("Public IPv6: {}".format(public_ipv6))
+    print("Public IPs: {}, {}".format(public_ips[0],public_ips[1]))
+    print("")
+    print("Tearing down {}".format(server.name))
+    server.delete()
     print("*"*28)
 
 
@@ -76,8 +75,4 @@ print("")
 for server in my_servers:
     print("Tearing down {}".format(server.name))
     server.delete()
-
-# TODO: Check for deletion
-
-
 
