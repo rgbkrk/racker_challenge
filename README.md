@@ -48,7 +48,7 @@ Write an application that when passed the arguments FQDN, image, and flavor it c
 
 Write an application that will:
 
-* Create 2 servers, supplying a ssh key to be installed at `/root/.ssh/authorized_keys`.
+* Create 2 servers, supplying an ssh key to be installed at `/root/.ssh/authorized_keys`.
 * Create a load balancer
 * Add the 2 new servers to the LB
 * Set up LB monitor and custom error page.
