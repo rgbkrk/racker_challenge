@@ -18,7 +18,9 @@ pyrax.set_credential_file(creds)
 cs = pyrax.cloudservers
 
 def create_base():
-
+    '''
+    Creates a dummy base
+    '''
     # Creating a dummy server that we'll clone from
     base_image = cs.images.list()[0]
     base_flavor = cs.flavors.list()[0]
@@ -28,14 +30,21 @@ def create_base():
     return base_server
 
 def clone_machine(server):
+    '''
+    Creates an image of the server and returns a clone
+    '''
+    # Create the image, and get a reference to it
     im = server.create_image("base_image")
+    image = cs.images.get(im)
 
-    # Note: need to wait for image to be created before the cloning will work
-    # TODO: Figure out how to catch this. Add it to the docs on pyrax as well
-    #           pyrax.wait_until
+    # Image will be in a "SAVING" state until ready -- wait for ACTIVE
+    image = pyrax.wait_until(image, "status", "ACTIVE", attempts=0)
 
-    clone_server = cs.servers.create(name="clone", image=im,
+    # Time to clone
+    clone_server = cs.servers.create(name="clone", image=image.id,
             flavor=server.flavor['id'])
+
+    return clone_server
 
 if __name__ == "__main__":
     base_server = create_base()

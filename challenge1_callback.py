@@ -16,12 +16,43 @@ creds = os.path.expanduser("~/.rackspace_cloud_credentials")
 pyrax.set_credential_file(creds)
 
 def summarize(server):
+    '''
+    For an ACTIVE server, prints IP and login credentials.
+
+    If server has ERRORED, simply alerts and exits.
+
+    If server is in any other state, function returns.
+
+    >>> cs = pyrax.cloudservers
+    >>> image, flavor = cs.images.list()[0], cs.flavors.list()[0]
+    >>> server_name = "lv2srv"
+    >>> server = cs.servers.create(name=server_name, image=image.id,
+            flavor=flav_512.id)
+    >>> server = pyrax.utils.wait_until(server, "status", ["ACTIVE", "ERROR"], attempts=0)
+    >>> summarize(server) # doctest: +ELLIPSIS, +NORMALIZE_WHITESPACE
+    ****************************
+    Server: lv2srv
+    ACTIVE!
+
+    Admin Password: ...
+    Private IP: ...
+    Public IPs: ...
+
+    Tearing down lv2srv
+    ****************************
+
+    '''
+
+
     print("")
     print("*"*28)
     print(u"Server: {}".format(server.name))
     if(server.status == u'ERROR'):
         print("**         ERROR!         **")
         print("** Server creation failed **")
+        return
+    if(server.status != u'ACTIVE'):
+        print("** Server in wrong state for summary **")
         return
 
     print("ACTIVE!")
