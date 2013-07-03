@@ -9,6 +9,7 @@ connect to it.
 
 import argparse
 import os
+import sys
 
 import pyrax
 
@@ -33,6 +34,10 @@ inst = cdb.create("inst.db", flavor="1GB Instance", volume=2)
 print("Waiting for instance to come online")
 inst = pyrax.utils.wait_until(inst, "status", ["ACTIVE", "ERROR"])
 
+if(inst.status == "ERROR"):
+    print("Failed to create instance for database, exiting")
+    sys.exit()
+
 # Add a database
 print("Creating a database")
 db = inst.create_database("mmmData")
@@ -46,5 +51,5 @@ user = inst.create_user(name=username, password=password, database_names=[db])
 print("User: {}".format(username))
 print("Password: {}".format(password))
 
-#TODO: Figure out how one would connect to this...
+print("Rackspace Hostname: {}".format(inst.hostname))
 
